@@ -8,7 +8,7 @@ var name = document.querySelector('.name');
 var desc = document.querySelector('.desc');
 var temp = document.querySelector('.temp');
 
-var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + inputValue.value + "&appid=" + apiKey;
+var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + inputValue + "&appid=" + apiKey;
 
 /*button.addEventListener('click', function(){
     fetch(queryURL)
@@ -29,15 +29,4 @@ var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + inputValue.
 });
   
   
-    /*  city = $(this).parent('.btnPar').siblings('.textVal').val().trim();
-        if(city === "") {
-        return;
-    };
-    inputValue.push(city);
 
-    localStorage.setItem('city', JSON.stringify(inputValue));
-    fiveForecastEl.empty();
-    getHistory();
-    getWeatherToday();
-});
-*/
