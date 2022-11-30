@@ -1,5 +1,5 @@
 var apiKey = "9876abe1ec13a72a4e7d542293d7c7b0";
-var inputValue = document.getElementById('#cityinput').innerHTML;
+var inputValue = document.getElementById('#cityinput');
 
 
 var button = document.querySelector('.btn');
@@ -8,8 +8,8 @@ var name = document.querySelector('.name');
 var desc = document.querySelector('.desc');
 var temp = document.querySelector('.temp');
 
-var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + inputValue + "&appid=" + apiKey;
-console.log(innerHTML)
+var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + inputValue.innerHTML + "&appid=" + apiKey;
+console.log(inputValue.innerHTML)
 /*button.addEventListener('click', function(){
     fetch(queryURL)
     .then(response => response.json())
