@@ -46,9 +46,11 @@ function displayTime(){
         .then(day5data=>{
             
             document.querySelector(".cardTodayCityName").innerHTML=day5data.city.name;
-            document.querySelector(".todayTemp").innerHTML=`Temperature: <span>${ convertion(day5data.list[0].main.temp )} C</span>`
-            document.querySelector('#wind0').innerHTML=day5data.list[0].wind.speed;
-            document.querySelector('#humid0').innerHTML=day5data.list[0].main.humidity;
+
+            document.querySelector("#ftemp").innerHTML=`<span>${ convertion(day5data.list[0].main.temp )} C</span>`;
+            document.querySelector('#fHumidity').innerHTML=`<span>${day5data.list[0].main.humidity} %<span>`;
+            document.querySelector('#fwind').innerHTML=`<span>${day5data.list[0].wind.speed} km/h<span>`;
+            
             console.log(day5data)
 
           /*  for(var i = 0; i< day5data.list.length; i=(i+7)){
