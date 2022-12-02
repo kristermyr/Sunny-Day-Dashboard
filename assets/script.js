@@ -20,22 +20,32 @@ var temp = document.querySelector('.temp');
 })
  */  
     button.addEventListener('click',function(){
+        
         fetch("https://api.openweathermap.org/data/2.5/weather?q=" + inputValue.value + "&appid=" + apiKey).then((response) =>{ 
          response.json().then((data) => {
-            console.log(data);
+            var lat = data.coord.lat
+            var long = data.coord.lon
+        fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${apiKey}`)
+        .then(response=>response.json()).then(day5data=>{
+            
+            document.querySelector(".cardTodayCityName").innerHTML=day5data.city.name;
+            //document.querySelector(".todayTemp").innerHTML=day5data.temp
+
+            for(var i = 0; i< day5data.list.length; i=(i+7)){
+                var singleDay = day5data.list[i]
+                console.log(singleDay.weather[0].description)
+                console.log(singleDay)
+                document.querySelector('.todayTemp').innerHTML=singleDay.main.temp
+                document.querySelector('.description').innerHTML=singleDay.weather[0].description
+            }
+        })
+            
+         
+           
          })
     });
 
-      /*      .then((res) => {
-                if (res.status !==200) {
-                console.log('Problem!', res.status);
-                }
-                 res.json().then((data)=> {
-             console.log(data);
-              });
-           })
-    
-    */
+      
 
 });
   
