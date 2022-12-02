@@ -29,6 +29,14 @@ function displayTime(){
     
     1000);
 
+    
+var fiveDay = [];
+
+for  (var i = 0; i < 5; i++) {
+    let forecastDate = dayjs().add(i + 1,'days').format('MMMM D, YYYY'); 
+    fiveDay.push(forecastDate);
+}
+console.log(fiveDay)
     function convertion(val){
         return (val - 273).toFixed(2)
     }
@@ -44,9 +52,14 @@ function displayTime(){
         fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${apiKey}`)
         .then(response=>response.json())
         .then(day5data=>{
-            
-            document.querySelector(".cardTodayCityName").innerHTML=day5data.city.name;
+            document.querySelector("#fdate0").innerHTML=fiveDay[0];
+            document.querySelector("#fdate1").innerHTML=fiveDay[1];
+            document.querySelector("#fdate2").innerHTML=fiveDay[2];
+            document.querySelector("#fdate3").innerHTML=fiveDay[3];
+            document.querySelector("#fdate4").innerHTML=fiveDay[4];
 
+            document.querySelector(".cardTodayCityName").innerHTML=day5data.city.name;
+            document.querySelector('#fimg').innerHTML=
             document.querySelector("#ftemp").innerHTML=`<span>${ convertion(day5data.list[0].main.temp )} C</span>`;
             document.querySelector('#fHumidity').innerHTML=`<span>${day5data.list[0].main.humidity} %<span>`;
             document.querySelector('#fwind').innerHTML=`<span>${day5data.list[0].wind.speed} km/h<span>`;
