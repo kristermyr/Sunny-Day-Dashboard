@@ -29,6 +29,10 @@ function displayTime(){
     
     1000);
 
+    function convertion(val){
+        return (val - 273).toFixed(2)
+    }
+
 
     button.addEventListener('click',function(){
         
@@ -42,9 +46,12 @@ function displayTime(){
         .then(day5data=>{
             
             document.querySelector(".cardTodayCityName").innerHTML=day5data.city.name;
-            //document.querySelector(".todayTemp").innerHTML=day5data.temp
+            document.querySelector(".todayTemp").innerHTML=`Temperature: <span>${ convertion(day5data.list[0].main.temp )} C</span>`
+            document.querySelector('#wind0').innerHTML=day5data.list[0].wind.speed;
+            document.querySelector('#humid0').innerHTML=day5data.list[0].main.humidity;
+            console.log(day5data)
 
-            for(var i = 0; i< day5data.list.length; i=(i+7)){
+          /*  for(var i = 0; i< day5data.list.length; i=(i+7)){
                 var singleDay = day5data.list[i]
                 console.log(singleDay.weather[0].description)
                 console.log(singleDay)
@@ -52,7 +59,7 @@ function displayTime(){
                 document.querySelector('.description').innerHTML=singleDay.weather[0].description;
                 console.log(singleDay.wind.speed)
                 document.querySelector('#wind0').innerHTML=singleDay.wind.speed;
-            }
+            }*/
         })
             
          
