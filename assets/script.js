@@ -9,6 +9,7 @@ var desc = document.querySelector('.desc');
 var temp = document.querySelector('.temp');
 var mph = "mph";
 
+
 // var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + inputValue.innerText + "&appid=" + apiKey;
 
 /*button.addEventListener('click', function(){
@@ -36,6 +37,8 @@ for  (var i = 0; i < 5; i++) {
     let forecastDate = dayjs().add(i + 1,'days').format('MMMM D, YYYY'); 
     fiveDay.push(forecastDate);
 }
+
+
 console.log(fiveDay)
     function convertion(val){
         return (val - 273).toFixed(2)
@@ -52,19 +55,42 @@ console.log(fiveDay)
         fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${apiKey}`)
         .then(response=>response.json())
         .then(day5data=>{
-            document.querySelector("#fdate0").innerHTML=fiveDay[0];
-            document.querySelector("#fdate1").innerHTML=fiveDay[1];
-            document.querySelector("#fdate2").innerHTML=fiveDay[2];
-            document.querySelector("#fdate3").innerHTML=fiveDay[3];
-            document.querySelector("#fdate4").innerHTML=fiveDay[4];
-
+            
+            
+//current day
             document.querySelector(".cardTodayCityName").innerHTML=day5data.city.name;
-            document.querySelector('#fimg').innerHTML=
-            document.querySelector("#ftemp").innerHTML=`<span>${ convertion(day5data.list[0].main.temp )} C</span>`;
-            document.querySelector('#fHumidity').innerHTML=`<span>${day5data.list[0].main.humidity} %<span>`;
-            document.querySelector('#fwind').innerHTML=`<span>${day5data.list[0].wind.speed} km/h<span>`;
+          //  document.querySelector('#fimg').innerHTML=
+            document.querySelector("#temp").innerHTML=`<span>${ convertion(day5data.list[0].main.temp )} C</span>`;
+            document.querySelector('#Humidity').innerHTML=`<span>${day5data.list[0].main.humidity} %<span>`;
+            document.querySelector('#wind').innerHTML=`<span>${day5data.list[0].wind.speed} m/s<span>`;
             
             console.log(day5data)
+
+            //Day1   
+            document.querySelector("#date0").innerHTML=fiveDay[0];   
+            document.querySelector("#temp0").innerHTML=`<span>${ convertion(day5data.list[1].main.temp )} C</span>`;
+            document.querySelector('#Humidity0').innerHTML=`<span>${day5data.list[1].main.humidity} %<span>`;
+            document.querySelector('#Wind0').innerHTML=`<span>${day5data.list[1].wind.speed} m/s<span>`;
+            
+
+            //Day2
+            document.querySelector("#date01").innerHTML=fiveDay[1];
+            document.querySelector("#temp1").innerHTML=`<span>${ convertion(day5data.list[2].main.temp )} C</span>`;
+            document.querySelector('#Humidity1').innerHTML=`<span>${day5data.list[2].main.humidity} %<span>`;
+            document.querySelector('#Wind1').innerHTML=`<span>${day5data.list[2].wind.speed} m/s<span>`;
+            
+            //Day3
+            document.querySelector("#date2").innerHTML=fiveDay[3];
+            document.querySelector("#temp2").innerHTML=`<span>${ convertion(day5data.list[3].main.temp )} C</span>`;
+            document.querySelector('#Humidity2').innerHTML=`<span>${day5data.list[3].main.humidity} %<span>`;
+            document.querySelector('#Wind2').innerHTML=`<span>${day5data.list[3].wind.speed} m/s<span>`;
+
+            //Day4
+            document.querySelector("#date3").innerHTML=fiveDay[3];
+            
+
+            //Day5
+            document.querySelector("#date4").innerHTML=fiveDay[4];
 
           /*  for(var i = 0; i< day5data.list.length; i=(i+7)){
                 var singleDay = day5data.list[i]
@@ -75,11 +101,20 @@ console.log(fiveDay)
                 console.log(singleDay.wind.speed)
                 document.querySelector('#wind0').innerHTML=singleDay.wind.speed;
             }*/
-        })
+
+           // var day5WeatherDetails = ['Temp: ' + weatherData.current.temp + ' °C', 'Wind: ' + weatherData.current.wind_speed + ' km/h', 'Humidity: ' + weatherData.current.humidity + '%', 'UV Index: ' + weatherData.current.uvi]
             
-         
+
            
+
+
+    }
+    )
+        
+         
+               
          })
+         
     });
 
       
