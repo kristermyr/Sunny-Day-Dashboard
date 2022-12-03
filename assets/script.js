@@ -41,10 +41,10 @@ console.log(fiveDay);
         .then(response=>response.json())
         .then(day5data=>{
             
-          //  var icon = day5data.weather[0].main.temp
+            var createIcon = document.createElement("img")
             
             document.querySelector(".cardTodayCityName").innerHTML=day5data.city.name;
-          //  document.querySelector('#fimg').innerHTML=
+          
             document.querySelector("#temp").innerHTML=`<span>${ convertion(day5data.list[0].main.temp )} C</span>`;
             document.querySelector('#Humidity').innerHTML=`<span>${day5data.list[0].main.humidity} %<span>`;
             document.querySelector('#wind').innerHTML=`<span>${day5data.list[0].wind.speed} m/s<span>`;
@@ -56,7 +56,7 @@ console.log(fiveDay);
             document.querySelector("#temp0").innerHTML=`<span>${ convertion(day5data.list[6].main.temp )} C</span>`;
             document.querySelector('#Humidity0').innerHTML=`<span>${day5data.list[6].main.humidity} %<span>`;
             document.querySelector('#Wind0').innerHTML=`<span>${day5data.list[6].wind.speed} m/s<span>`;
-            
+         
 
             //Day2
             document.querySelector("#date2").innerHTML=fiveDay[1];
@@ -81,13 +81,24 @@ console.log(fiveDay);
             document.querySelector("#temp4").innerHTML=`<span>${ convertion(day5data.list[38].main.temp )} C</span>`;
             document.querySelector('#Humidity4').innerHTML=`<span>${day5data.list[38].main.humidity} %<span>`;
             document.querySelector('#Wind4').innerHTML=`<span>${day5data.list[38].wind.speed} m/s<span>`;
+           
+            var weatherURL = "http://openweathermap.org/img/wn/";
             
-            
+            var icon = [weatherURL + day5data.list[0].weather[0].icon + ".png"];
+            var icon1 = [weatherURL + day5data.list[6].weather[0].icon + ".png"];
+            var icon2 = [weatherURL + day5data.list[14].weather[0].icon + ".png"];
+            var icon3 = [weatherURL + day5data.list[22].weather[0].icon + ".png"];
+            var icon4 = [weatherURL + day5data.list[30].weather[0].icon + ".png"];
+            var icon5 = [weatherURL + day5data.list[38].weather[0].icon + ".png"];
+
+            document.querySelector('#img0').innerHTML= createIcon.setAttribute("src",icon1); 
+           console.log(icon1)
 
                 });               
                     });        
                 });
             });
         
-    
-    
+            
+            
+            
