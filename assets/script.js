@@ -2,8 +2,8 @@ var apiKey = "9876abe1ec13a72a4e7d542293d7c7b0";
 var inputValue = document.getElementById('cityinput');
 var timeDisplayEl = $('#date1')
 var button = document.querySelector('.btn');
-
-
+var history = document.getElementById('searchHistory')
+var storage = []
 
 
 function displayTime(){                                             
@@ -21,17 +21,21 @@ for  (var i = 0; i < 5; i++) {
     let forecastDate = dayjs().add(i + 1,'days').format('MMMM D, YYYY'); 
     fiveDay.push(forecastDate);
 }
+        
 
 
-console.log(fiveDay);
+
 
     function convertion(val){
         return (val - 273).toFixed(2)
     }
 
+    button.addEventListener('click',getWeather);
+    button.addEventListener('click',setStorage);
+    button.addEventListener('click',displaydata)
+    
 
-    button.addEventListener('click',function(){
-        
+    function getWeather(){
         fetch("https://api.openweathermap.org/data/2.5/weather?q=" + inputValue.value + "&appid=" + apiKey)
         .then((response) =>{ 
          response.json().then((data) => {
@@ -41,7 +45,7 @@ console.log(fiveDay);
         .then(response=>response.json())
         .then(day5data=>{
             
-            var createIcon = document.createElement("img")
+           
             
             document.querySelector(".cardTodayCityName").innerHTML=day5data.city.name;
           
@@ -49,7 +53,7 @@ console.log(fiveDay);
             document.querySelector('#Humidity').innerHTML=`<span>${day5data.list[0].main.humidity} %<span>`;
             document.querySelector('#wind').innerHTML=`<span>${day5data.list[0].wind.speed} m/s<span>`;
             
-            console.log(day5data)
+            
 
             //Day1   
             document.querySelector("#date01").innerHTML=fiveDay[0];   
@@ -84,21 +88,32 @@ console.log(fiveDay);
            
             var weatherURL = "http://openweathermap.org/img/wn/";
             
-            var icon = [weatherURL + day5data.list[0].weather[0].icon + ".png"];
-            var icon1 = [weatherURL + day5data.list[6].weather[0].icon + ".png"];
-            var icon2 = [weatherURL + day5data.list[14].weather[0].icon + ".png"];
-            var icon3 = [weatherURL + day5data.list[22].weather[0].icon + ".png"];
-            var icon4 = [weatherURL + day5data.list[30].weather[0].icon + ".png"];
-            var icon5 = [weatherURL + day5data.list[38].weather[0].icon + ".png"];
-
-            document.querySelector('#img0').innerHTML= createIcon.setAttribute("src",icon1); 
-           console.log(icon1)
+           
 
                 });               
                     });        
                 });
-            });
+
+    }
+
+    var searchHistory = JSON.parse(localStorage.getItem("search"))|| [];
+
+    function setStorage () {
+        var search = inputValue.value;
+        getWeather(search);
+        searchHistory.push(search);
+        localStorage.setItem("search",JSON.stringify(searchHistory));
         
+    }
+    function displaydata(){
+        
+            document.querySelector("#searchHistory").innerHTML=`<button class="btn btn-primary">${searchHistory[0]}</button>`;
             
-            
-            
+
+
+
+    }
+    
+
+
+    
