@@ -4,6 +4,8 @@ body{
 
 
 
+
+
 .card {
 	margin: 10px;
 }
@@ -11,4 +13,18 @@ body{
 .today{
 	padding:25px;
 
+}
+
+.forecast{
+	background-color: #323d4f;
+
+}
+
+.title {
+	background-image: linear-gradient(to right, #465ab8 , #261360);
+	color: white;
+}
+
+.midContent {
+	padding: 20px;
 }

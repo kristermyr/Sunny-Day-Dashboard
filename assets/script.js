@@ -54,10 +54,10 @@ function displaydata(){
 
 
     function convertion(val){
-        return Math.floor(val - 273).toFixed(2)
+        return Math.floor(val - 273).toFixed(2)                 //adjusts the value from API to calculated celsius value to display
     }
 
-    button.addEventListener('click',getWeather);
+    button.addEventListener('click',getWeather);                //connects the search button to execute the functions
     button.addEventListener('click',searchStore);
    // button.addEventListener('click',displaydata)
     button.addEventListener('click',historyList)
@@ -72,7 +72,7 @@ function displaydata(){
         .then(response=>response.json())
         .then(day5data=>{
             
-            var createIcon = document.createElement("img")
+           
             
             document.querySelector(".cardTodayCityName").innerHTML=day5data.city.name;
           
