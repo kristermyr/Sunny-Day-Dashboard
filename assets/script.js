@@ -6,7 +6,7 @@ var history = document.getElementById('searchHistory')
 var storage = []
 
 
-function displayTime(){                                             
+function displayTime(){                                             // Current date that shows under the city title
   var reformatDate = dayjs().format('dddd, MMMM D, YYYY');
   timeDisplayEl.text(reformatDate);
   }
@@ -15,25 +15,52 @@ function displayTime(){
     1000);
 
     
-var fiveDay = [];
+var fiveDay = [];            //stores each date for the 5 day forecast
 
-for  (var i = 0; i < 5; i++) {
+for  (var i = 0; i < 5; i++) {                                                    //loop to push each day to fiveDay array until it hits 5 days.
     let forecastDate = dayjs().add(i + 1,'days').format('MMMM D, YYYY'); 
     fiveDay.push(forecastDate);
 }
+
+var searchHistory = JSON.parse(localStorage.getItem("search"))|| [];                //stores the search history items
         
+function searchStore () {                                                           
+    var search = inputValue.value;
+    getWeather(search);
+    searchHistory.push(search);
+    localStorage.setItem("search",JSON.stringify(searchHistory));
+    
+}
 
 
+function historyList(){                     //creates list of searched cities
+    var inputTask = inputValue.value;
+    var li = document.createElement('li');
+    var t = document.createTextNode(inputTask);
+    li.appendChild(t);
+    document.getElementById('searchHistory').appendChild(li);
+    
+}
+/*
+function displaydata(){
+    var display = JSON.parse(localStorage.getItem('search'));               //idea to create button in the history list 
+
+
+    document.querySelector("#searchHistory").innerHTML=`<button class="btn btn-primary">${display[0]}</button>`;
+    
+    console.log(display)
+}
+*/
 
 
     function convertion(val){
-        return (val - 273).toFixed(2)
+        return Math.floor(val - 273).toFixed(2)
     }
 
     button.addEventListener('click',getWeather);
-    button.addEventListener('click',setStorage);
-    button.addEventListener('click',displaydata)
-    
+    button.addEventListener('click',searchStore);
+   // button.addEventListener('click',displaydata)
+    button.addEventListener('click',historyList)
 
     function getWeather(){
         fetch("https://api.openweathermap.org/data/2.5/weather?q=" + inputValue.value + "&appid=" + apiKey)
@@ -45,7 +72,7 @@ for  (var i = 0; i < 5; i++) {
         .then(response=>response.json())
         .then(day5data=>{
             
-           
+            var createIcon = document.createElement("img")
             
             document.querySelector(".cardTodayCityName").innerHTML=day5data.city.name;
           
@@ -85,10 +112,35 @@ for  (var i = 0; i < 5; i++) {
             document.querySelector("#temp4").innerHTML=`<span>${ convertion(day5data.list[38].main.temp )} C</span>`;
             document.querySelector('#Humidity4').innerHTML=`<span>${day5data.list[38].main.humidity} %<span>`;
             document.querySelector('#Wind4').innerHTML=`<span>${day5data.list[38].wind.speed} m/s<span>`;
-           
+            console.log(day5data)
             var weatherURL = "http://openweathermap.org/img/wn/";
             
+            var icon = [weatherURL + day5data.list[0].weather[0].icon + ".png"];
+            var icon1 = [weatherURL + day5data.list[6].weather[0].icon + ".png"];
+            var icon2 = [weatherURL + day5data.list[14].weather[0].icon + ".png"];
+            var icon3 = [weatherURL + day5data.list[22].weather[0].icon + ".png"];
+            var icon4 = [weatherURL + day5data.list[30].weather[0].icon + ".png"];
+            var icon5 = [weatherURL + day5data.list[38].weather[0].icon + ".png"];
+//day1
+            document.querySelector("#icon").innerHTML=`<img id="wicon" src="" alt="Weather icon"></img>`;
+            $('#wicon').attr('src', icon);
            
+//day2      
+            document.querySelector("#icon1").innerHTML=`<img id="wicon1" src="" alt="Weather icon"></img>`;
+            $('#wicon1').attr('src', icon1);
+//day3
+            document.querySelector("#icon2").innerHTML=`<img id="wicon2" src="" alt="Weather icon"></img>`;
+            $('#wicon2').attr('src', icon2);
+//day4
+            document.querySelector("#icon3").innerHTML=`<img id="wicon3" src="" alt="Weather icon"></img>`;
+            $('#wicon3').attr('src', icon3);
+//day5      
+            document.querySelector("#icon4").innerHTML=`<img id="wicon4" src="" alt="Weather icon"></img>`;
+            $('#wicon4').attr('src', icon4);
+//day6      
+
+            document.querySelector("#icon5").innerHTML=`<img id="wicon5" src="" alt="Weather icon"></img>`;
+            $('#wicon5').attr('src', icon5);
 
                 });               
                     });        
@@ -96,24 +148,3 @@ for  (var i = 0; i < 5; i++) {
 
     }
 
-    var searchHistory = JSON.parse(localStorage.getItem("search"))|| [];
-
-    function setStorage () {
-        var search = inputValue.value;
-        getWeather(search);
-        searchHistory.push(search);
-        localStorage.setItem("search",JSON.stringify(searchHistory));
-        
-    }
-    function displaydata(){
-        
-            document.querySelector("#searchHistory").innerHTML=`<button class="btn btn-primary">${searchHistory[0]}</button>`;
-            
-
-
-
-    }
-    
-
-
-    
