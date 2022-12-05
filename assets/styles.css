@@ -1,10 +1,6 @@
 body{
-	padding:25px;
+	padding:25px;               /*Minor css finishing touches*/
 }
-
-
-
-
 
 .card {
 	margin: 10px;
@@ -21,7 +17,7 @@ body{
 }
 
 .title {
-	background-image: linear-gradient(to right, #465ab8 , #261360);
+	background-image: linear-gradient(to right, #465ab8 , #261360);    
 	color: white;
 }
 

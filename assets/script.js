@@ -1,9 +1,9 @@
 var apiKey = "9876abe1ec13a72a4e7d542293d7c7b0";
 var inputValue = document.getElementById('cityinput');
-var timeDisplayEl = $('#date1')
+var timeDisplayEl = $('#date1');
 var button = document.querySelector('.btn');
-var history = document.getElementById('searchHistory')
-var storage = []
+var history = document.getElementById('searchHistory');
+var storage = [];
 
 
 function displayTime(){                                             // Current date that shows under the city title
@@ -63,7 +63,7 @@ function displaydata(){
     button.addEventListener('click',historyList)
 
     function getWeather(){
-        fetch("https://api.openweathermap.org/data/2.5/weather?q=" + inputValue.value + "&appid=" + apiKey)
+        fetch("https://api.openweathermap.org/data/2.5/weather?q=" + inputValue.value + "&appid=" + apiKey)      //gets coordinates from API
         .then((response) =>{ 
          response.json().then((data) => {
             var lat = data.coord.lat
@@ -73,9 +73,8 @@ function displaydata(){
         .then(day5data=>{
             
            
-            
+                                                                                                            //Current day display with output values accessed from API and date from fiveDay array
             document.querySelector(".cardTodayCityName").innerHTML=day5data.city.name;
-          
             document.querySelector("#temp").innerHTML=`<span>${ convertion(day5data.list[0].main.temp )} C</span>`;
             document.querySelector('#Humidity').innerHTML=`<span>${day5data.list[0].main.humidity} %<span>`;
             document.querySelector('#wind').innerHTML=`<span>${day5data.list[0].wind.speed} m/s<span>`;
@@ -113,17 +112,18 @@ function displaydata(){
             document.querySelector('#Humidity4').innerHTML=`<span>${day5data.list[38].main.humidity} %<span>`;
             document.querySelector('#Wind4').innerHTML=`<span>${day5data.list[38].wind.speed} m/s<span>`;
             console.log(day5data)
+                                                                                            //weather icon output. Accessing the icon img code and putting it in the link.
             var weatherURL = "http://openweathermap.org/img/wn/";
-            
+
             var icon = [weatherURL + day5data.list[0].weather[0].icon + ".png"];
             var icon1 = [weatherURL + day5data.list[6].weather[0].icon + ".png"];
             var icon2 = [weatherURL + day5data.list[14].weather[0].icon + ".png"];
             var icon3 = [weatherURL + day5data.list[22].weather[0].icon + ".png"];
             var icon4 = [weatherURL + day5data.list[30].weather[0].icon + ".png"];
             var icon5 = [weatherURL + day5data.list[38].weather[0].icon + ".png"];
-//day1
+//day1                                                                                              creates img element with empty src
             document.querySelector("#icon").innerHTML=`<img id="wicon" src="" alt="Weather icon"></img>`;
-            $('#wicon').attr('src', icon);
+            $('#wicon').attr('src', icon);                                                          // adds src to image element, which is the link made above
            
 //day2      
             document.querySelector("#icon1").innerHTML=`<img id="wicon1" src="" alt="Weather icon"></img>`;
