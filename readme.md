@@ -23,6 +23,18 @@ THEN I am presented with a 5-day forecast that displays the date, an icon repres
 ```
 ![Sunny-Day-Dashboard contains a simplistic designed start page with a input field and a search button. The user types the name of the city they would like to see the weather to and hits search and are shown the current weather and a 5-day forecast. ](./assets/img/Screenshot%202022-12-05%20164932.png)
 
+## Credits and resources
+
+## Youtube:
+https://www.youtube.com/watch?v=wPElVpR1rwA&t=2019s&ab_channel=developedbyed
+https://www.youtube.com/watch?v=GXrDEA3SIOQ&t=731s&ab_channel=ShanjaiRaj
+https://www.youtube.com/watch?v=OE9CMC2gFH0&ab_channel=WowCodingAcademy
+
+## Git-hub inspiration:
+https://github.com/sylviaprabudy/weather-dashboard
+https://github.com/mjgiannelli/weather-rain-or-shine
+https://github.com/LunaRossie/Weather-Dashboard--
+
 
 ## Collaborators:
 Dylan Qualee

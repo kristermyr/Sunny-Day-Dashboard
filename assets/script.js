@@ -61,6 +61,7 @@ function displaydata(){
     button.addEventListener('click',searchStore);
    // button.addEventListener('click',displaydata)
     button.addEventListener('click',historyList)
+    document.submit.apply(getWeather)
 
     function getWeather(){
         fetch("https://api.openweathermap.org/data/2.5/weather?q=" + inputValue.value + "&appid=" + apiKey)      //gets coordinates from API
